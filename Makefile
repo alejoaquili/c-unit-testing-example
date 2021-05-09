@@ -4,6 +4,7 @@ all:
 clean:
 	cd src; make clean
 	rm -rf *.out
+	
 format:
 	clang-format -style=file --sort-includes --Werror -i ./src/*.c ./src/include/*.h
 
