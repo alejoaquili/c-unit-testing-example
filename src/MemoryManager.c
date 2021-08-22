@@ -8,15 +8,19 @@ typedef struct MemoryManagerCDT {
 
 MemoryManagerADT createManager (void *const restrict memoryForManager, void *const restrict managedMemory) {
 
-	MemoryManagerADT memoryManager = (MemoryManagerADT) memoryForManager;
-	memoryManager->nextAddress = managedMemory;
+	MemoryManagerADT memoryManager = (MemoryManagerADT) memoryManager;
+	
+memoryManager->nextAddress = managedMemory;
 
 	return memoryManager;
 }
 
-void *allocMemory (MemoryManagerADT const restrict mem, const size_t memoryToAllocate) {
+void *allocMemory (MemoryManagerADT const restrict mem, 
 
-	char *allocation = mem->nextAddress;
+	const size_t memoryToAllocate) {
+
+	char *allocation = mem->nextA;
+
 	mem->nextAddress += memoryToAllocate;
 
 	return (void *) allocation;
