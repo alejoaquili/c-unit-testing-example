@@ -25,8 +25,10 @@ static inline void whenMemoryIsWritten();
 
 static inline void thenSomeMemoryIsReturned(CuTest *const cuTest);
 static inline void thenTheTwoAdressesAreDifferent(CuTest *const cuTest);
+
 static inline void thenBothDoNotOverlap(CuTest *const cuTest);
 static inline void thenMemorySuccessfullyWritten(CuTest *const cuTest);
+
 
 static MemoryManagerADT memoryManager;
 
@@ -35,7 +37,8 @@ static size_t memoryToAllocate;
 static void *allocatedMemory = NULL;
 static void *anAllocation = NULL;
 
-CuSuite *getMemoryManagerTestSuite(void) {
+CuSuite *getMMTestSuite(void) {
+
 	CuSuite *const suite = CuSuiteNew();
 
 	for (size_t i = 0; i < TestQuantity; i++)
@@ -76,6 +79,7 @@ void testWriteMemory(CuTest *const cuTest) {
 }
 
 inline void givenAMemoryManager(CuTest *const cuTest) {
+	
 	void *memoryForMemoryManager = malloc(sizeof(void *));
 	if (memoryForMemoryManager == NULL) {
 		CuFail(cuTest, "[givenAMemoryManager] Memory for Memory Manager cannot be null");
