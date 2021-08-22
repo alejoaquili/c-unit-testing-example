@@ -17,12 +17,13 @@ MemoryManagerADT create
 }
 
 void *alloc
-(MemoryManagerADT const restrict manager, const size_t memoryToAllocate) 
+(MemoryManagerADT const restrict manager, 
+	const size_t alloc) 
 
 {
-	char *allocation = manager->nextAddress;
+	char *allocation = manager->next;
 
-	manager->nextAddress += memoryToAllocate;
+	manager->next += alloc;
 
 	return (void *) allocation;
 }
