@@ -5,23 +5,24 @@ typedef struct MemoryManagerCDT {
 } MemoryManagerCDT;
 
 MemoryManagerADT create
-(void *const restrict memoryForMemoryManager, 
+(void *const restrict memory, 
 	void *const restrict managedMemory) 
 {
 
-	MemoryManagerADT memoryManager = (MemoryManagerADT) memoryForMemoryManager;
+	MemoryManagerADT memoryManager = (MemoryManagerADT) memory;
+
 	memoryManager->nextAddress = managedMemory;
 
 	return memoryManager;
 }
 
 void *alloc
-(MemoryManagerADT const restrict memoryManager, const size_t memoryToAllocate) 
+(MemoryManagerADT const restrict manager, const size_t memoryToAllocate) 
 
 {
-	char *allocation = memoryManager->nextAddress;
+	char *allocation = manager->nextAddress;
 
-	memoryManager->nextAddress += memoryToAllocate;
+	manager->nextAddress += memoryToAllocate;
 
 	return (void *) allocation;
 }
