@@ -11,9 +11,10 @@ MemoryManagerADT create
 
 	MemoryManagerADT memoryManager = (MemoryManagerADT) memory;
 
-	memoryManager->nextAddress = managedMemory;
+	memoryManager->next = managedMemory;
 
 	return memoryManager;
+
 }
 
 void *alloc
@@ -22,8 +23,6 @@ void *alloc
 
 {
 	char *allocation = manager->next;
-
 	manager->next += alloc;
-
 	return (void *) allocation;
 }
