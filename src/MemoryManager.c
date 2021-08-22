@@ -1,7 +1,7 @@
 #include "MemoryManager.h"
 
-typedef struct MemoryManagerCDT {
-	char *nextAddress;
+typedef struct MManagerCDT {
+	char *nextA;
 } MemoryManagerCDT;
 
 MemoryManagerADT create
@@ -9,20 +9,22 @@ MemoryManagerADT create
 	void *const restrict managedMemory) 
 {
 
-	MemoryManagerADT memoryManager = (MemoryManagerADT) memory;
+	MemoryManagerADT manager = (MemoryManagerADT) memory;
 
-	memoryManager->next = managedMemory;
+	manager->nextA = managedMemory;
 
-	return memoryManager;
+	return manager;
 
 }
 
 void *alloc
-(MemoryManagerADT const restrict manager, 
-	const size_t alloc) 
+(MemoryManagerADT const restrict manager, const size_t alloc) 
 
 {
-	char *allocation = manager->next;
-	manager->next += alloc;
+	char *allocation = 
+	manager->nextA;
+	
+	manager->nextA += alloc;
+
 	return (void *) allocation;
 }
