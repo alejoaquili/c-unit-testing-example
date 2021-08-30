@@ -1,0 +1,23 @@
+name: c-unit-testing-example
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout repo
+      uses: actions/checkout@v2
+    - name: compile 
+      run: make all
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+      - name: checkout repo
+        uses: actions/checkout@v2
+      - name: Run Unit tests.
+        run: make all && ./MemoryManagerTest.out
