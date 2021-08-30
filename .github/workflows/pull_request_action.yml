@@ -1,0 +1,19 @@
+name: c-unit-testing-example
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: compile 
+      run: make all
+      
+  test:
+    runs-on: ubuntu-latest
+    needs: [ build ]
+    steps:
+      - name: Run Unit tests.
+        run: ./MemoryManagerTest.out
