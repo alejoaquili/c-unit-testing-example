@@ -20,5 +20,4 @@ jobs:
       - name: checkout repo
         uses: actions/checkout@v2
       - name: Run Unit tests.
-        run: make all
-        run: ./MemoryManagerTest.out
+        run: make all && ./MemoryManagerTest.out
