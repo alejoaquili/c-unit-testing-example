@@ -1,28 +1,19 @@
 include ./include/Makefile.inc
 
-TARGET  := MemoryManagerTest
 SOURCES := $(wildcard *.c)
 OBJECTS := $(SOURCES:.c=.o)
+TARGET  := MemoryManagerTest
 
-all: clean compile link
+all: $(TARGET)
 
-compile:$(SOURCES)
-	$(COMPILER) $(COMPILER_FLAGS) $(SOURCES)
-	@echo "Compilation complete."
-
-link:$(OBJECTS)
+$(TARGET): $(OBJECTS)
 	$(LINKER) $(LINKER_FLAGS) $(OBJECTS) -o ../$(TARGET).out
-	@echo "Linking complete."
 
 %.o : %.c
-	$(COMPILER) $(COMPILER_FLAGS) $< -o $@
-
-%.out : %.o
-	$(LINKER) $(LINKER_FLAGS) $< -o $@
+	$(COMPILER) $< $(COMPILER_FLAGS) -o $@
 
 clean:
 	@rm -rf $(OBJECTS)
-	@rm -rf $(TARGET).out
-	@echo "Clean complete."
+	@rm -rf ../$(TARGET).out
 
-.PHONY: all clean
+.PHONY: all clean $(TARGET)
