@@ -17,11 +17,11 @@ static const size_t TestQuantity = 3;
 static const Test MemoryManagerTests[] = {testAllocMemory, testTwoAllocations, testWriteMemory};
 
 static inline void givenAMemoryManager(CuTest *const cuTest);
-static inline void givenAMemoryAmount();
-static inline void givenAnAllocation();
+static inline void givenAMemoryAmount(void);
+static inline void givenAnAllocation(void);
 
-static inline void whenMemoryIsAllocated();
-static inline void whenMemoryIsWritten();
+static inline void whenMemoryIsAllocated(void);
+static inline void whenMemoryIsWritten(void);
 
 static inline void thenSomeMemoryIsReturned(CuTest *const cuTest);
 static inline void thenTheTwoAdressesAreDifferent(CuTest *const cuTest);
@@ -89,19 +89,19 @@ inline void givenAMemoryManager(CuTest *const cuTest) {
 	memoryManager = createMemoryManager(memoryForMemoryManager, managedMemory);
 }
 
-inline void givenAMemoryAmount() {
+inline void givenAMemoryAmount(void) {
 	memoryToAllocate = ALLOCATION_SIZE;
 }
 
-inline void givenAnAllocation() {
+inline void givenAnAllocation(void) {
 	anAllocation = allocMemory(memoryManager, memoryToAllocate);
 }
 
-inline void whenMemoryIsAllocated() {
+inline void whenMemoryIsAllocated(void) {
 	allocatedMemory = allocMemory(memoryManager, memoryToAllocate);
 }
 
-inline void whenMemoryIsWritten() {
+inline void whenMemoryIsWritten(void) {
 	*((char *) anAllocation) = WRITTEN_VALUE;
 }
 
